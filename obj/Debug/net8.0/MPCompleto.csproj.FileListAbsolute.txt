@@ -1,0 +1,14 @@
+/Users/uce_g/MPCompleto/bin/Debug/net8.0/MPCompleto
+/Users/uce_g/MPCompleto/bin/Debug/net8.0/MPCompleto.deps.json
+/Users/uce_g/MPCompleto/bin/Debug/net8.0/MPCompleto.runtimeconfig.json
+/Users/uce_g/MPCompleto/bin/Debug/net8.0/MPCompleto.dll
+/Users/uce_g/MPCompleto/bin/Debug/net8.0/MPCompleto.pdb
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.GeneratedMSBuildEditorConfig.editorconfig
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.AssemblyInfoInputs.cache
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.AssemblyInfo.cs
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.csproj.CoreCompileInputs.cache
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.dll
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/refint/MPCompleto.dll
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.pdb
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/MPCompleto.genruntimeconfig.cache
+/Users/uce_g/MPCompleto/obj/Debug/net8.0/ref/MPCompleto.dll
