@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿
 class Program
 {
     static void Main(string[] args)
@@ -147,6 +144,29 @@ class Program
         {
             return true;
         }
+
+        if (movimentoValido)
+        {
+            // Verifica se o peão chegou à última fileira
+            if ((nomePeca[0] == 'B' && linhaFinal == 8) || (nomePeca[0] == 'P' && linhaFinal == 1))
+            {
+                // Promove o peão
+                Console.WriteLine("Escolha uma peça para promover (D = Dama, T = Torre, B = Bispo, C = Cavalo):");
+                string novaPeca;
+                do
+                {
+                    novaPeca = Console.ReadLine().ToUpper();
+                } while (novaPeca != "D" && novaPeca != "T" && novaPeca != "B" && novaPeca != "C");
+
+                tabuleiro.Remove(posicaoInicial);
+                tabuleiro[posicaoFinal] = nomePeca[0] + novaPeca;
+            }
+            else
+            {
+                // Move o peão normalmente
+                tabuleiro.Remove(posicaoInicial);
+                tabuleiro[posicaoFinal] = nomePeca;
+            }    
 
         // Movimento especial: andar para trás
         if (operacoesEspeciais["PeaoParaTras"] && colunaInicial == colunaFinal && linhaFinal == linhaInicial - direcao && !tabuleiro.ContainsKey(posicaoFinal))
@@ -448,4 +468,3 @@ static bool PodeExecutarOperacaoEspecialCavalo(string posicaoInicial, Dictionary
         return true;
     }
 }
-
