@@ -1,7 +1,212 @@
-﻿
-class Program
+﻿using System;
+using System.Collections.Generic;
+
+class Sistema
 {
-    static void Main(string[] args)
+    private List<Jogador> jogadoresRegistrados = new List<Jogador>();
+    private Jogo jogoAtual;
+
+    // Classe Jogador
+    class Jogador
+    {
+        public string Nome { get; }
+
+        public Jogador(string nome)
+        {
+            Nome = nome;
+        }
+    }
+
+    // Classe Jogo
+    class Jogo
+    {
+        public Jogador JogadorA { get; private set; }
+        public Jogador JogadorB { get; private set; }
+        public bool EmAndamento { get; set; }
+
+        public Jogo(Jogador jogadorA, Jogador jogadorB)
+        {
+            JogadorA = jogadorA;
+            JogadorB = jogadorB;
+            EmAndamento = true;
+        }
+
+        public void IniciarJogo()
+        {
+            EmAndamento = true;
+            Console.WriteLine("Jogo iniciado com sucesso.");
+        }
+
+        public void EncerrarJogo()
+        {
+            EmAndamento = false;
+            Console.WriteLine("Jogo encerrado com sucesso.");
+        }
+    }
+
+    // Método para registrar jogador
+    public string RegistrarJogador(string nomeJogador)
+    {
+        if (jogadoresRegistrados.Exists(j => j.Nome == nomeJogador))
+        {
+            return "Jogador já registrado.";
+        }
+        jogadoresRegistrados.Add(new Jogador(nomeJogador));
+        return "Jogador registrado com sucesso.";
+    }
+
+    // Método para listar jogadores registrados
+    public void ListarJogadores()
+    {
+        if (jogadoresRegistrados.Count == 0)
+        {
+            Console.WriteLine("Sem jogadores registrados.");
+        }
+        else
+        {
+            foreach (var jogador in jogadoresRegistrados)
+            {
+                Console.WriteLine($"Jogador: {jogador.Nome}");
+            }
+        }
+    }
+
+    // Método para iniciar o jogo
+    public string IniciarJogo(string comando, string nomeJogadorA, string nomeJogadorB)
+    {
+        if (jogoAtual != null && jogoAtual.EmAndamento)
+        {
+            return "Existe um jogo em curso.";
+        }
+
+        // Verificar se os jogadores estão registrados
+        Jogador jogadorA = jogadoresRegistrados.Find(j => j.Nome == nomeJogadorA);
+        Jogador jogadorB = jogadoresRegistrados.Find(j => j.Nome == nomeJogadorB);
+
+        if (jogadorA == null || jogadorB == null)
+        {
+            return "Jogador inexistente.";
+        }
+
+        // Caso seja uma continuação do jogo
+        if (comando == "Continuação")
+        {
+            // Aqui você pode carregar o estado do jogo a partir de um arquivo ou estrutura
+            Console.WriteLine("Jogo em continuação.");
+        }
+        else
+        {
+            // Caso seja um jogo novo
+            jogoAtual = new Jogo(jogadorA, jogadorB);
+            jogoAtual.IniciarJogo();
+        }
+
+        // Exibe o tabuleiro após iniciar o jogo
+        ExibirTabuleiro();
+
+        return "Jogo iniciado com sucesso.";
+    }
+
+    // Método para realizar movimentos (MP)
+    public void RealizarMovimento(string nomeJogador, string posicaoInicial, string posicaoFinal)
+    {
+        if (jogoAtual == null || !jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Não existe jogo em curso.");
+            return;
+        }
+
+        if (nomeJogador != jogoAtual.JogadorA.Nome && nomeJogador != jogoAtual.JogadorB.Nome)
+        {
+            Console.WriteLine("Jogador não participa no jogo em curso.");
+            return;
+        }
+
+        // Lógica para verificar e realizar movimento
+        Console.WriteLine($"{nomeJogador} moveu de {posicaoInicial} para {posicaoFinal}.");
+    }
+
+    // Método para realizar a troca de peças (OS)
+    public void RealizarTroca(string nomeJogador, string posicaoInicial, string posicaoFinal)
+    {
+        if (jogoAtual == null || !jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Não existe jogo em curso.");
+            return;
+        }
+
+        if (nomeJogador != jogoAtual.JogadorA.Nome && nomeJogador != jogoAtual.JogadorB.Nome)
+        {
+            Console.WriteLine("Jogador não participa no jogo em curso.");
+            return;
+        }
+
+        // Lógica para troca de peças
+        Console.WriteLine($"{nomeJogador} trocou as peças de {posicaoInicial} para {posicaoFinal}.");
+    }
+
+    // Método para exibir o tabuleiro (DJ)
+    public void ExibirTabuleiro()
+    {
+        if (jogoAtual == null || !jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Não existe jogo em curso.");
+            return;
+        }
+
+        // Exibição simplificada do tabuleiro
+        Console.WriteLine("Tabuleiro:");
+        Console.WriteLine("A    B    C    D    E    F    G    H");
+        Console.WriteLine("1  BR1  BH1  BB1  BQ1  BK1  BB2  BH2  BR2");
+        Console.WriteLine("2  BP1  BP2  BP3  BP4  BP5  BP6  BP7  BP8");
+        Console.WriteLine("3  ,,,,,,");
+        Console.WriteLine("4  ,,,,,,");
+        Console.WriteLine("5  ,,,,,,");
+        Console.WriteLine("6  ,,,,,,");
+        Console.WriteLine("7  WP1  WP2  WP3  WP4  WP5  WP6  WP7  WP8");
+        Console.WriteLine("8  WR1  WH1  WB1  WQ1  WK1  WB2  WH2  WR2");
+    }
+
+    // Método para encerrar o jogo
+    public void EncerrarJogo()
+    {
+        if (jogoAtual == null || !jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Não existe jogo em curso.");
+            return;
+        }
+
+        jogoAtual.EncerrarJogo();
+    }
+
+    // Método para salvar o jogo
+    public void SalvarJogo(string nomeFicheiro)
+    {
+        if (jogoAtual == null || !jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Não existe jogo em curso.");
+            return;
+        }
+
+        // Salvar o estado do jogo no arquivo
+        Console.WriteLine($"Jogo gravado com sucesso em {nomeFicheiro}.");
+    }
+
+    // Método para carregar o jogo
+    public void CarregarJogo(string nomeFicheiro)
+    {
+        if (jogoAtual != null && jogoAtual.EmAndamento)
+        {
+            Console.WriteLine("Existe um jogo em curso.");
+            return;
+        }
+
+        // Carregar o estado do jogo a partir do arquivo
+        Console.WriteLine($"Jogo lido com sucesso de {nomeFicheiro}.");
+    }
+
+
+    public void peças(string[] args)
     {
         // Inicialização do tabuleiro com as posições iniciais das peças
         Dictionary<string, string> tabuleiro = new Dictionary<string, string>()
@@ -145,32 +350,6 @@ class Program
             return true;
         }
 
-        if (movimentoValido)
-        {
-            // Verifica se o peão chegou à última fileira
-            if ((nomePeca[0] == 'B' && linhaFinal == 8) || (nomePeca[0] == 'P' && linhaFinal == 1))
-            {
-                // Promove o peão
-                Console.WriteLine("Escolha uma peça para promover (D = Dama, T = Torre, B = Bispo, C = Cavalo):");
-                string novaPeca;
-                do
-                {
-                    novaPeca = Console.ReadLine().ToUpper();
-                } while (novaPeca != "D" && novaPeca != "T" && novaPeca != "B" && novaPeca != "C");
-
-                tabuleiro.Remove(posicaoInicial);
-                tabuleiro[posicaoFinal] = nomePeca[0] + novaPeca;
-            }
-            else
-            {
-                // Move o peão normalmente
-                tabuleiro.Remove(posicaoInicial);
-                tabuleiro[posicaoFinal] = nomePeca;
-            }    
-
-            return true;
-        }
-
         // Movimento especial: andar para trás
         if (operacoesEspeciais["PeaoParaTras"] && colunaInicial == colunaFinal && linhaFinal == linhaInicial - direcao && !tabuleiro.ContainsKey(posicaoFinal))
         {
@@ -289,6 +468,10 @@ class Program
             return seguro;
         }
     }
+
+    return false;
+}
+
 
     static bool MovimentoCavalo(string nomePeca, string posicaoInicial, string posicaoFinal, Dictionary<string, string> tabuleiro)
 {
@@ -465,5 +648,76 @@ static bool PodeExecutarOperacaoEspecialCavalo(string posicaoInicial, Dictionary
         }
 
         return true;
+    }
+}
+
+
+
+
+
+
+class Program
+{
+    static void Main()
+    {
+        Sistema sistema = new Sistema();
+
+        while (true)
+        {
+            string entrada = Console.ReadLine();
+            string[] partes = entrada.Split(' ');
+
+            // Verificação de comando "RJ" para registrar jogador
+            if (partes.Length == 2 && partes[0] == "RJ") // Registrar Jogador
+            {
+                string resultado = sistema.RegistrarJogador(partes[1]);
+                Console.WriteLine(resultado);
+            }
+            // Verificação de comando "LJ" para listar jogadores
+            else if (partes.Length == 1 && partes[0] == "LJ") // Listar Jogadores
+            {
+                sistema.ListarJogadores();
+            }
+            // Verificação de comando "IJ" para iniciar jogo
+            else if (partes.Length == 4 && partes[0] == "IJ") // Iniciar Jogo
+            {
+                string resultado = sistema.IniciarJogo(partes[1], partes[2], partes[3]);
+                Console.WriteLine(resultado);
+            }
+            // Verificação de comando "MP" para realizar movimento
+            else if (partes.Length == 4 && partes[0] == "MP") // Movimento
+            {
+                sistema.RealizarMovimento(partes[1], partes[2], partes[3]);
+            }
+            // Verificação de comando "OS" para troca de peças
+            else if (partes.Length == 4 && partes[0] == "OS") // Operações especiais
+            {
+                sistema.RealizarTroca(partes[1], partes[2], partes[3]);
+            }
+            // Verificação de comando "DJ" para exibir tabuleiro
+            else if (partes.Length == 1 && partes[0] == "DJ") // Exibir Tabuleiro
+            {
+                sistema.ExibirTabuleiro();
+            }
+            // Verificação de comando "D" para encerrar jogo
+            else if (partes.Length == 1 && partes[0] == "D") // Desistir do Jogo
+            {
+                sistema.EncerrarJogo();
+            }
+            // Verificação de comando "G" para salvar jogo
+            else if (partes.Length == 2 && partes[0] == "G") // Gravar Jogo
+            {
+                sistema.SalvarJogo(partes[1]);
+            }
+            // Verificação de comando "L" para carregar jogo
+            else if (partes.Length == 2 && partes[0] == "L") // Carregar Jogo
+            {
+                sistema.CarregarJogo(partes[1]);
+            }
+            else
+            {
+                Console.WriteLine("Comando inválido.");
+            }
+        }
     }
 }

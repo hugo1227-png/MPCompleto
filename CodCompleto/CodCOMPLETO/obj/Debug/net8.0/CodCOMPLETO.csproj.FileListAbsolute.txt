@@ -1,0 +1,15 @@
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/bin/Debug/net8.0/CodCOMPLETO
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/bin/Debug/net8.0/CodCOMPLETO.deps.json
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/bin/Debug/net8.0/CodCOMPLETO.runtimeconfig.json
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/bin/Debug/net8.0/CodCOMPLETO.dll
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/bin/Debug/net8.0/CodCOMPLETO.pdb
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.GeneratedMSBuildEditorConfig.editorconfig
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.AssemblyInfoInputs.cache
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.AssemblyInfo.cs
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.csproj.CoreCompileInputs.cache
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.sourcelink.json
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.dll
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/refint/CodCOMPLETO.dll
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.pdb
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/CodCOMPLETO.genruntimeconfig.cache
+/Users/uce_g/MPCompleto/CodCompleto/CodCOMPLETO/obj/Debug/net8.0/ref/CodCOMPLETO.dll
