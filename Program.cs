@@ -168,6 +168,9 @@ class Program
                 tabuleiro[posicaoFinal] = nomePeca;
             }    
 
+            return true;
+        }
+
         // Movimento especial: andar para trás
         if (operacoesEspeciais["PeaoParaTras"] && colunaInicial == colunaFinal && linhaFinal == linhaInicial - direcao && !tabuleiro.ContainsKey(posicaoFinal))
         {
